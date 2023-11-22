@@ -4,95 +4,7 @@
         <meta charset="utf-8">
         <meta name = "viewport" content="width=device-width">
         <title>Registration Form</title>
-        <style>
-            *{
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                min-height: 100vh;
-                background: #eee;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-family: sans-serif;
-                text-align: center;
-            }
-
-            .container {
-                margin: 0;
-                width: 430px;
-                max-width: 90%;
-            }
-
-            .container h1 {
-                text-align: center;
-                margin-bottom: 16px;
-            }
-
-            .container form {
-                width: 100%;
-                height: 45%;
-                padding: 10px;
-                border: 4px solid #0E6655;
-                border-radius: 16px;
-                background: white;
-            }
-
-            .container ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            .container form li {
-                margin-top: 12px;
-            }
-            
-            .container label {
-                display: inline-block;
-                width: 145px;
-                text-align: right;
-            }
-            
-            .container input,
-            .container textarea {
-                padding-left: 10px;
-                font-family: sans-serif;
-                width: 250px;
-                height: 35px;
-                box-sizing: border-box;
-                border: 1px solid #ddd;
-                border-radius: 3px;
-            }
-            
-            .container input:focus, 
-            .container textarea:focus {
-                border-color: #000;
-            }
-            .container textarea {
-                vertical-align: top;
-                height: 5em;
-            }
-            
-            .container button {
-                margin: 0 auto;
-                width: 100px;
-                height: 30px;
-                border: none;
-                background: #117A65;
-                text-align: center;
-                font-size: 16px;
-                color: white;
-                border-radius: 4px;
-            }
-
-            .container form li.button {
-                text-align: center;
-            }
-
-        </style>
+        <link href="registration.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
@@ -101,23 +13,23 @@
                 <ul>
                     <li>
                         <label for="first_name">First Name:</label>
-                        <input type="text" id="first_name" name="user_first_name" />
+                        <input type="text" id="first_name" name="user_first_name" required />
                     </li>
                     <li>
                         <label for="last_name">Last Name:</label>
-                        <input type="text" id="last_name" name="user_last_name" />
+                        <input type="text" id="last_name" name="user_last_name" required />
                     </li>
                     <li>
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="user_email" />
+                        <input type="email" id="email" name="user_email" required />
                     </li>
                     <li>
                         <label for="password">Password:</label>
-                        <input type="text" id="password" name="user_pword" />
+                        <input type="password" id="password" name="user_pword" required />
                     </li>
                     <li>
                         <label for="confirm_pword">Confirm Password:</label>
-                        <input type="text" id="confirm_pword" name="user_confirm" />
+                        <input type="password" id="confirm_pword" name="user_confirm" required />
                     </li>
                     <li class="button">
                         <button type="submit">Submit</button>
