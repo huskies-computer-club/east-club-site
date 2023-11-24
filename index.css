@@ -1,0 +1,31 @@
+nav {
+    display:flex;
+    border: 2px solid black;
+}
+
+nav {
+    display: flex;
+    margin: 0px;
+}
+nav {
+    float: left;
+}
+
+a:link {
+    color: blue;
+}
+a:visited {
+    color: blue;
+}
+
+a:hover {
+    color: yellow;
+}
+
+a:active {
+    color: red;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
