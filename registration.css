@@ -84,3 +84,25 @@ body {
 .container form li.button {
     text-align: center;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* use @media & display:flex; flex-direction: column; */
+@media (max-width: 600px) {
+    .container {
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container label {
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+}
