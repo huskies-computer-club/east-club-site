@@ -12,14 +12,14 @@ nav {
 }
 
 a:link {
-    color: blue;
+    color: black;
 }
 a:visited {
-    color: blue;
+    color: black;
 }
 
 a:hover {
-    color: yellow;
+    color: #449d44;
 }
 
 a:active {
