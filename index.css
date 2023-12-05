@@ -1,0 +1,31 @@
+nav {
+    display:flex;
+    border: 2px solid gold;
+}
+
+nav {
+    display: flex;
+    margin: 0px;
+}
+nav {
+    float: left;
+}
+
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: #449d44;
+}
+
+a:active {
+    color: red;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
