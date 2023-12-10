@@ -1,10 +1,14 @@
 const express = require("express");
 const path = require("path");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+
+// Enable All CORS Requests
+app.use(cors());
 
 // needed to handle post request
 app.use(express.json());
@@ -35,8 +39,10 @@ app.get("/items", async (req, res) => {
 });
 // create user
 app.post("/user", async (req, res) => {
+  console.log("test");
   const { first_name, last_name, email, password } = req.body;
   const saltRounds = 10;
+  //! make sure all param exist
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const user = await db("users")
@@ -93,9 +99,13 @@ app.post("/order-items", async (req, res) => {
   }
 });
 
+app.post("/test", async () => {
+  console.log("testing hit");
+  res.status(200);
+});
+
 app.listen(PORT, () => {
   //? maybe add a domain env later
   console.log("USING NODE ENV type:", process.env.NODE_ENV);
   console.log(`Server started on http://localhost:${PORT}`);
 });
-
