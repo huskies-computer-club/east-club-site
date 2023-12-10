@@ -1,10 +1,7 @@
 # east-club-site
 HTML website for the East Club
 
-Changes made:
+## How to run the app
+Make sure to have node and npm install 
 
-1. Welcome page for the East Club first tod do list competed
-
-2. Add the link to the registration form.
-3. Add the link to Login form and home page. Also added index.css file for the
-border with 2 pixels wide.
+run npm i & npm run dev to run server locally
