@@ -39,10 +39,13 @@ app.get("/items", async (req, res) => {
 });
 // create user
 app.post("/user", async (req, res) => {
-  console.log("test");
   const { first_name, last_name, email, password } = req.body;
+  const propsToCheck = ["first_name", "last_name", "email", "password"];
+  const hasAllProps = propsToCheck.every((prop) => prop in req.body);
+  if (!hasAllProps) {
+    return res.status(400).json({ error: "missing params" });
+  }
   const saltRounds = 10;
-  //! make sure all param exist
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const user = await db("users")
@@ -97,11 +100,6 @@ app.post("/order-items", async (req, res) => {
   } catch (err) {
     res.json({ error: err });
   }
-});
-
-app.post("/test", async () => {
-  console.log("testing hit");
-  res.status(200);
 });
 
 app.listen(PORT, () => {
