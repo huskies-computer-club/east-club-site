@@ -45,21 +45,32 @@ app.post("/user", async (req, res) => {
   if (!hasAllProps) {
     return res.status(400).json({ error: "missing params" });
   }
+
+  // const existingEmail = await db('users').where('email', email).first();
+  // if (existingEmail) {
+  //   return res.status(400).json({error: 'email already exists'});
+  // }
+
   const saltRounds = 10;
   try {
+    const emailExists = await db("users").where({ email }).first();
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    const user = await db("users")
-      .insert({
-        first_name,
-        last_name,
-        email,
-        password: hashedPassword,
-      })
-      .returning("*");
-    res.status(201).json(user);
+    
+    if (!emailExists && hashedPassword) {
+      const user = await db("users")
+        .insert({
+          first_name,
+          last_name,
+          email,
+          password: hashedPassword,
+        })
+        .returning("*");
+      res.send("User created successfully!")
+    } else {
+      res.status(400).send("Email already exists");
+    }
   } catch (err) {
-    console.log(err);
-    res.json({ error: err });
+    res.status(500).send("Error registration");
   }
 });
 
@@ -69,7 +80,7 @@ app.post("/login", async (req, res) => {
     const user = await db("users").where({ email }).first();
     if (user && (await bcrypt.compare(password, user.password))) {
       //! give a cookie
-      res.send("Login successful");
+      res.send("Login successful!");
     } else {
       res.status(400).send("Invalid credentials");
     }
