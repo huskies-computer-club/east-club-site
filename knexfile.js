@@ -4,10 +4,10 @@ module.exports = {
   development: {
     client: "pg",
     connection: {
-      host: 'localhost',
-      user: 'postgres',
-      database: 'postgres',
-      password: 'admin'
+      host: "localhost",
+      user: "postgres",
+      database: "postgres",
+      password: "admin",
     },
   },
   production: {
@@ -27,4 +27,3 @@ module.exports = {
     },
   },
 };
-

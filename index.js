@@ -55,7 +55,7 @@ app.post("/user", async (req, res) => {
   try {
     const emailExists = await db("users").where({ email }).first();
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    
+
     if (!emailExists && hashedPassword) {
       const user = await db("users")
         .insert({
@@ -65,7 +65,7 @@ app.post("/user", async (req, res) => {
           password: hashedPassword,
         })
         .returning("*");
-      res.send("User created successfully!")
+      res.send("User created successfully!");
     } else {
       res.status(400).send("Email already exists");
     }
