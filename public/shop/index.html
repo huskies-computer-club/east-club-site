@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Huskies Computer Club Fundraising Shop</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/public/static/shop/css/index.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+	<div id="overlay"></div>
+	<header>
+		<ul>
+			<li class="nav-left">
+				<a href="index.html">
+					<img src="/public/static/shop/images/computer-club-logo.png" alt="website logo - image of a dog" />
+				</a>
+			</li>
+			<li>
+				<a href="index.html" class="nav-center">
+					<h1>The Huskies Fundraising Shop</h1>
+				</a>
+			</li>
+			<li class="nav-right">
+				<a href="cart.html">
+					<div class="bubble-container">
+						<img src="/public/static/shop/images/shopping-cart.svg" alt="shopping cart symbol"
+							id="shopping-cart-logo" />
+						<div id="cart_count">0</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</header>
+	<div id="toast" class="toast">
+		<div id="toast-header" class="toast-header">
+			Success!
+		</div>
+		<div id="toast-body" class="toast-body"></div>
+	</div>
+	<main>
+		<div id="items">
+		</div>
+	</main>
+	<div id="rightPanel" class="hidden"></div>
+	<footer>
+		<a href="https://www.instagram.com/huskiescomputerclub" target="_blank">Instagram</a>
+		<a href="/">Huskies Computer Club</a>
+	</footer>
+	<script src="/public/static/shop/js/updateCartCountUI.js"></script>
+	<script src="/public/static/shop/js/addToCart.js"></script>
+	<script src="/public/static/shop/js/jsonMockData.js"></script>
+	<script src="/public/static/shop/js/index.js"></script>
+</body>
+
+</html>

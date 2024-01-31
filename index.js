@@ -3,10 +3,13 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRounds = process.env.SALT_ROUNDS || 10;
 const cors = require("cors");
+var vhost = require("vhost");
 
 const app = express();
+const shopApp = express();
 
 const PORT = process.env.PORT || 3000;
+const DOMAIN = process.env.DOMAIN;
 const session = require("express-session");
 const KnexSessionStore = require("connect-session-knex")(session);
 const knex = require("knex");
@@ -38,7 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
@@ -49,9 +52,28 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
+app.use(vhost(`shop.${DOMAIN}`, shopApp));
+
+app.get(["/"], (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+
+shopApp.get(["/", "/index.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "public/shop", "index.html"));
+});
+
+shopApp.get(["/cart", "/cart.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "public/shop", "cart.html"));
+});
+
+shopApp.get(["/contact", "/contact.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "public/shop", "contact.html"));
+});
+
+shopApp.get(["/order-placed", "/order-placed.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "public/shop", "order-placed.html"));
+});
+
 app.get("/admin-login", function (req, res) {
   res.sendFile(path.join(__dirname, "public", "admin-login.html"));
 });
@@ -202,8 +224,9 @@ app.get("/logout", function (req, res) {
     res.redirect("/admin-login");
   });
 });
+
 app.listen(PORT, () => {
   //? maybe add a domain env later
   console.log("USING NODE ENV type:", process.env.NODE_ENV);
-  console.log(`Server started on http://localhost:${PORT}`);
+  console.log(`Server started on http://${DOMAIN}:${PORT}`);
 });
