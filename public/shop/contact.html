@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Huskies Computer Club Fundraising Shop</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="static/css/index.css">
+	<link rel="stylesheet" type="text/css" href="static/css/contact.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<ul>
+			<li class="nav-left">
+				<a href="index.html">
+					<img src="static/images/computer-club-logo.png" alt="website logo - image of a dog" />
+				</a>
+			</li>
+			<li>
+				<a href="index.html" class="nav-center">
+					<h1>The Huskies Fundraising Shop</h1>
+				</a>
+			</li>
+			<li class="nav-right">
+				<a href="index.html">
+					<img src="static/images/shopping-bag.svg" alt="shopping cart symbol" id="shopping-bag-logo" />
+				</a>
+			</li>
+		</ul>
+	</header>
+	<main>
+		<h1>Contact Form</h1>
+		<form id="orderForm">
+			<div>
+				<label for="firstName">Enter your first name: </label>
+				<input type="text" name="firstName" id="first" required />
+			</div>
+			<div>
+				<label for="email">Enter your email:</label>
+				<input type="email" id="email" pattern="^[a-zA-Z0-9._%+-]+@[eE][xX][aA][mM][pP][lL][eE]\.com$"
+					required />
+			</div>
+			<div>
+				<input type="submit" value="Place Order" />
+			</div>
+		</form>
+	</main>
+	<footer>
+		<a href="https://www.instagram.com/huskiescomputerclub" target="_blank">Instagram</a>
+		<a href="/">Huskies Computer Club</a>
+	</footer>
+	<script>
+		$(document).ready(function () {
+			$('#orderForm').submit(function (event) {
+				event.preventDefault();
+
+				alert('Thank you for your order');
+
+				window.location.href = 'order-placed.html';
+			});
+		});
+	</script>
+</body>
+
+</html>
