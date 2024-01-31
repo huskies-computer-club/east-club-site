@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <!-- Add your CSS stylesheets and JavaScript files here -->
+</head>
+
+<body>
+    <header>
+        <!-- Add your header content here -->
+    </header>
+
+    <nav>
+        <!-- Add your navigation menu here -->
+    </nav>
+
+    <main>
+        <form action="item" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="name">Enter item name:</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+            <div>
+                <label for="price">Enter item price:</label>
+                <input type="number" step="0.01" id="price" name="price" required />
+            </div>
+            <div>
+                <label for="description">Enter item description:</label>
+                <input type="text" id="description" name="description" required />
+            </div>
+            <div>
+                <label for="uploaded_file">Enter item image:</label>
+                <input type="file" name="uploaded_file" id="uploaded_file">
+            </div>
+            <div>
+                <input type="submit" value="Add Item" />
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+</body>
+
+</html>
