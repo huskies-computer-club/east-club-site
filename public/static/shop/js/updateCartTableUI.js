@@ -9,7 +9,9 @@ function updateCartTableUI() {
                 <tr>
                     <td>
                         <div class="column_1">
-                            <img src="/images/${item.image}" alt="item image" />
+                            <img src="/public/static/shop/images/${
+                              item.image
+                            }" alt="item image" />
                             <p>${item.name}</p>
                         </div>
                     </td>
@@ -37,7 +39,7 @@ function updateCartTableUI() {
       `
             <h1>You got nothing in ur cart</h1> 
             <p>Go shop :)</p>
-            <img src="/images/shopping_cart.gif" alt="empty shopping cart" />
+            <img src="/public/static/shop/images/shopping_cart.gif" alt="empty shopping cart" />
       `
     );
   }

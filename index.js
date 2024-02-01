@@ -54,18 +54,24 @@ app.use(
 
 app.use(vhost(`shop.${DOMAIN}`, shopApp));
 
-app.get("/", (req, res) => {
-  console.log("main app");
+app.get(["/"], (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-shopApp.get("/", (req, res) => {
-  console.log("shopApp");
+shopApp.get(["/", "/index.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "public/shop", "index.html"));
 });
 
-shopApp.get("/cart", (req, res) => {
+shopApp.get(["/cart", "/cart.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "public/shop", "cart.html"));
+});
+
+shopApp.get(["/contact", "/contact.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "public/shop", "contact.html"));
+});
+
+shopApp.get(["/order-placed", "/order-placed.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "public/shop", "order-placed.html"));
 });
 
 app.get("/admin-login", function (req, res) {
