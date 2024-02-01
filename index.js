@@ -54,7 +54,7 @@ app.use(
 
 app.use(vhost(`shop.${DOMAIN}`, shopApp));
 
-app.get(["/"], (req, res) => {
+app.get(["/", "/index.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
@@ -85,6 +85,14 @@ app.get("/admin-dashboard", function (req, res) {
     // User is logged in, proceed to dashboard...
     res.sendFile(path.join(__dirname, "public", "admin-dashboard.html"));
   }
+});
+
+app.get("/login.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
+app.get("/registration.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "registration.html"));
 });
 
 // get all items
