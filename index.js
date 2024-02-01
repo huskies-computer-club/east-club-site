@@ -41,8 +41,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, "public/static")));
-shopApp.all(express.static(path.join(__dirname, "public/static/shop")));
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -52,7 +52,15 @@ app.use(
   })
 );
 
+app.use(vhost(`shop.${DOMAIN}`, shopApp));
+
+app.get("/", (req, res) => {
+  console.log("main app");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 shopApp.get("/", (req, res) => {
+  console.log("shopApp");
   res.sendFile(path.join(__dirname, "public/shop", "index.html"));
 });
 
@@ -60,12 +68,6 @@ shopApp.get("/cart", (req, res) => {
   res.sendFile(path.join(__dirname, "public/shop", "cart.html"));
 });
 
-app.use(vhost(`shop.${DOMAIN}`, shopApp));
-app.use(vhost(`shop.${DOMAIN}`, userapp))
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 app.get("/admin-login", function (req, res) {
   res.sendFile(path.join(__dirname, "public", "admin-login.html"));
 });
@@ -216,6 +218,7 @@ app.get("/logout", function (req, res) {
     res.redirect("/admin-login");
   });
 });
+
 app.listen(PORT, () => {
   //? maybe add a domain env later
   console.log("USING NODE ENV type:", process.env.NODE_ENV);

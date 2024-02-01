@@ -17,7 +17,7 @@ $(document).ready(function () {
   // Function to render items
   jsonData.items.forEach((item, i) => {
     const itemContent = `
-    <img id=${item.id} src="/images/${item.image}" alt="${item.name}" style="max-width: 300px; height: 200px;">
+    <img id=${item.id} src="public/static/shop/images/${item.image}" alt="${item.name}" style="max-width: 300px; height: 200px;">
     <h2>${item.name}</h2>
     <p>${item.description}</p>
     <p>Price: $${item.price}</p>
@@ -88,10 +88,10 @@ $(document).ready(function () {
   // on hover change pizza img
   $("#5").hover(
     function () {
-      $("#5").attr("src", "/images/pizza-2.jpg");
+      $("#5").attr("src", "/public/static/shop/images/pizza-2.jpg");
     },
     function () {
-      $("#5").attr("src", "/images/pizza.jpg");
+      $("#5").attr("src", "/public/static/shop/images/pizza.jpg");
     }
   );
   // show panel
