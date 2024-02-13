@@ -2,25 +2,16 @@ const express = require("express");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRounds = process.env.SALT_ROUNDS || 10;
-const cors = require("cors");
-var vhost = require("vhost");
-
 const app = express();
-const shopApp = express();
-
 const PORT = process.env.PORT || 3000;
 const DOMAIN = process.env.DOMAIN;
-const session = require("express-session");
-const KnexSessionStore = require("connect-session-knex")(session);
 const knex = require("knex");
 const dbConfig = require("./knexfile");
 const dbEnv = process.env.NODE_ENV || "development";
 const db = knex(dbConfig[dbEnv]);
-const store = new KnexSessionStore({
-  knex: db,
-  tablename: "sessions",
-  clearInterval: 1000 * 60 * 60,
-});
+
+require("./src/middleware")(app);
+require("./src/subdomains")(app);
 
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
@@ -33,45 +24,8 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET,
 });
 
-// Enable All CORS Requests
-app.use(cors());
-
-// needed to handle post request
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from the 'public' directory
-app.use("/public", express.static(path.join(__dirname, "public")));
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-  })
-);
-
-app.use(vhost(`shop.${DOMAIN}`, shopApp));
-
 app.get(["/", "/index.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-shopApp.get(["/", "/index.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "public/shop", "index.html"));
-});
-
-shopApp.get(["/cart", "/cart.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "public/shop", "cart.html"));
-});
-
-shopApp.get(["/contact", "/contact.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "public/shop", "contact.html"));
-});
-
-shopApp.get(["/order-placed", "/order-placed.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "public/shop", "order-placed.html"));
 });
 
 app.get("/admin-login", function (req, res) {
